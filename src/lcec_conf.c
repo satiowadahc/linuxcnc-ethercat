@@ -118,6 +118,10 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
 
   { "EP2028", lcecSlaveTypeEP2028, NULL },
 
+  // analog in, 3ch, 12 bits
+  { "EL3064", lcecSlaveTypeEL3064 },
+
+
   // analog in, 2ch, 16 bits
   { "EL3102", lcecSlaveTypeEL3102, NULL },
   { "EL3112", lcecSlaveTypeEL3112, NULL },
@@ -1429,7 +1433,7 @@ static void parseModParamAttrs(LCEC_CONF_XML_INST_T *inst, int next, const char 
       break;
   }
 
-  (state->currSlave->pdoMappingCount) += modParams->pdoMappingCount; 
+  (state->currSlave->pdoMappingCount) += modParams->pdoMappingCount;
   (state->currSlave->modParamCount)++;
 }
 
@@ -1443,4 +1447,3 @@ static int parseSyncCycle(LCEC_CONF_XML_STATE_T *state, const char *nptr) {
   // custom value
   return atoi(nptr);
 }
-

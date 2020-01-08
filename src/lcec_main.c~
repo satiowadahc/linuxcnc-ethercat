@@ -24,7 +24,6 @@
 #include "lcec_el1252.h"
 #include "lcec_el2xxx.h"
 #include "lcec_el2202.h"
-#include "lcec_el3064.h"
 #include "lcec_el31x2.h"
 #include "lcec_el3255.h"
 #include "lcec_el40x1.h"
@@ -50,7 +49,6 @@
 #include "lcec_ph3lm2rm.h"
 
 #include "rtapi_app.h"
-#include "rtapi_mutex.h"
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Sascha Ittner <sascha.ittner@modusoft.de>");
@@ -115,10 +113,6 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL2809, LCEC_EL2xxx_VID, LCEC_EL2809_PID, LCEC_EL2809_PDOS, lcec_el2xxx_init},
 
   { lcecSlaveTypeEP2028, LCEC_EL2xxx_VID, LCEC_EP2028_PID, LCEC_EP2028_PDOS, lcec_el2xxx_init},
-
-  // analog in, 2ch, 12 bits
-  { lcecSlaveTypeEL3064, LCEC_EL3064_VID, LCEC_EL3064_PID, LCEC_EL3064_PDOS, lcec_el3064_init},
-
 
   // analog in, 2ch, 16 bits
   { lcecSlaveTypeEL3102, LCEC_EL31x2_VID, LCEC_EL3102_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
@@ -1333,7 +1327,7 @@ void lcec_write_master(void *arg, long period) {
   hal_data = master->hal_data;
   *(hal_data->pll_err) = 0;
   *(hal_data->pll_out) = 0;
-  // the first read dc_time value semms to be invalid, so wait for two successive succesfull reads
+  // the first read dc_time value semms to be invalid, so wait for two successive succesfull reads 
   if (dc_time_valid && master->dc_time_valid_last) {
     *(hal_data->pll_err) = master->app_time_last - dc_time;
     // check for invalid error values
@@ -1382,7 +1376,7 @@ int lcec_read_idn(struct lcec_slave *slave, uint8_t drive_no, uint16_t idn, uint
   size_t result_size;
   uint16_t error_code;
 
-  if ((err = ecrt_master_read_idn(master->master, slave->index, drive_no, idn, target, size, &result_size, &error_code))) {
+  if ((err = ecrt_master_read_idn(master->master, slave->index, drive_no, idn, target, size, &result_size, &error_code))) {  
     rtapi_print_msg(RTAPI_MSG_ERR, LCEC_MSG_PFX "slave %s.%s: Failed to execute IDN read (drive %u idn %c-%u-%u, error %d, error_code %08x)\n",
       master->name, slave->name, drive_no, (idn & 0x8000) ? 'P' : 'S', (idn >> 12) & 0x0007, idn & 0x0fff, err, error_code);
     return -1;
@@ -1589,3 +1583,4 @@ void copy_fsoe_data(struct lcec_slave *slave, unsigned int slave_offset, unsigne
     memcpy(&pd[master_offset], &pd[*(slave->fsoe_master_offset)], LCEC_FSOE_MSG_LEN);
   }
 }
+
