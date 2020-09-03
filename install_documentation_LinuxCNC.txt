@@ -31,14 +31,16 @@ INSTALL linuxcnc-ethercat
 ************************************************/
 
 0)
-I have a version of LinuxCNC-ethercat on my repo with the necessary modifications
-from the base github version.
+It's recommended to use the  LinuxCNC-ethercat repo on the RMDCNC gitlab, as
+it has all the necessary with the necessary modifications already done.
+Most of the instructions below are if you are installing LinuxCNC-ethercat from
+scratch using the public github repo.
 
-http://192.168.1.104/gitlab/sfroome/linuxcnc-ethercat
+If you are reading this, you have probably already cloned the repo, but if not,
+here's the link to the RMD repo.
+http://rmd-dev/gitlab/rmd/rmdcnc/ethercat-master
 
-The alternative is to use the the github version and manually patch a few bugs yourself.
-
-If you are using my repo and  the sf-master branch, you can skip ahead to
+If you are using the RMD repo, you can skip ahead to
 step 4. If you are using the installscript, you can skip to step 5.
 
 You will likely need this package before installing the linuxcnc-ethercat files.
