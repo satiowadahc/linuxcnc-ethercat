@@ -22,10 +22,12 @@
 #include "lcec_ax5200.h"
 #include "lcec_el1xxx.h"
 #include "lcec_el1252.h"
+#include "lcec_el1859.h"
 #include "lcec_el2xxx.h"
 #include "lcec_el2202.h"
 #include "lcec_el3064.h"
 #include "lcec_el31x2.h"
+#include "lcec_el31x4.h"
 #include "lcec_el3255.h"
 #include "lcec_el40x1.h"
 #include "lcec_el40x2.h"
@@ -94,6 +96,7 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL1252, LCEC_EL1252_VID, LCEC_EL1252_PID, LCEC_EL1252_PDOS, lcec_el1252_init},  // 2 fast channels with timestamp
   { lcecSlaveTypeEL1808, LCEC_EL1xxx_VID, LCEC_EL1808_PID, LCEC_EL1808_PDOS, lcec_el1xxx_init},
   { lcecSlaveTypeEL1809, LCEC_EL1xxx_VID, LCEC_EL1809_PID, LCEC_EL1809_PDOS, lcec_el1xxx_init},
+  { lcecSlaveTypeEL1819, LCEC_EL1xxx_VID, LCEC_EL1819_PID, LCEC_EL1819_PDOS, lcec_el1xxx_init},
 
   // digital out
   { lcecSlaveTypeEL2002, LCEC_EL2xxx_VID, LCEC_EL2002_PID, LCEC_EL2002_PDOS, lcec_el2xxx_init},
@@ -110,6 +113,7 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL2202, LCEC_EL2202_VID, LCEC_EL2202_PID, LCEC_EL2202_PDOS, lcec_el2202_init}, // 2 fast channels with tristate
   { lcecSlaveTypeEL2612, LCEC_EL2xxx_VID, LCEC_EL2612_PID, LCEC_EL2612_PDOS, lcec_el2xxx_init},
   { lcecSlaveTypeEL2622, LCEC_EL2xxx_VID, LCEC_EL2622_PID, LCEC_EL2622_PDOS, lcec_el2xxx_init},
+  { lcecSlaveTypeEL2634, LCEC_EL2xxx_VID, LCEC_EL2634_PID, LCEC_EL2634_PDOS, lcec_el2xxx_init},
   { lcecSlaveTypeEL2808, LCEC_EL2xxx_VID, LCEC_EL2808_PID, LCEC_EL2808_PDOS, lcec_el2xxx_init},
   { lcecSlaveTypeEL2798, LCEC_EL2xxx_VID, LCEC_EL2798_PID, LCEC_EL2798_PDOS, lcec_el2xxx_init},
   { lcecSlaveTypeEL2809, LCEC_EL2xxx_VID, LCEC_EL2809_PID, LCEC_EL2809_PDOS, lcec_el2xxx_init},
@@ -120,6 +124,9 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL3064, LCEC_EL3064_VID, LCEC_EL3064_PID, LCEC_EL3064_PDOS, lcec_el3064_init},
 
 
+  // digital in/out
+  { lcecSlaveTypeEL1859, LCEC_EL1859_VID, LCEC_EL1859_PID, LCEC_EL1859_PDOS, lcec_el1859_init},
+
   // analog in, 2ch, 16 bits
   { lcecSlaveTypeEL3102, LCEC_EL31x2_VID, LCEC_EL3102_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
   { lcecSlaveTypeEL3112, LCEC_EL31x2_VID, LCEC_EL3112_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
@@ -127,6 +134,9 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL3142, LCEC_EL31x2_VID, LCEC_EL3142_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
   { lcecSlaveTypeEL3152, LCEC_EL31x2_VID, LCEC_EL3152_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
   { lcecSlaveTypeEL3162, LCEC_EL31x2_VID, LCEC_EL3162_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
+
+  // analog in, 2ch, 16 bits
+  { lcecSlaveTypeEL3164, LCEC_EL31x4_VID, LCEC_EL3164_PID, LCEC_EL31x4_PDOS, lcec_el31x4_init},
 
   // analog in, 5ch, 16 bits
   { lcecSlaveTypeEL3255, LCEC_EL3255_VID, LCEC_EL3255_PID, LCEC_EL3255_PDOS, lcec_el3255_init},

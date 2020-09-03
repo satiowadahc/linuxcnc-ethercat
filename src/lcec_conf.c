@@ -96,6 +96,7 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL1252", lcecSlaveTypeEL1252, NULL },
   { "EL1808", lcecSlaveTypeEL1808, NULL },
   { "EL1809", lcecSlaveTypeEL1809, NULL },
+  { "EL1819", lcecSlaveTypeEL1819, NULL },
 
   // digital out
   { "EL2002", lcecSlaveTypeEL2002, NULL },
@@ -112,6 +113,7 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL2202", lcecSlaveTypeEL2202, NULL },
   { "EL2612", lcecSlaveTypeEL2612, NULL },
   { "EL2622", lcecSlaveTypeEL2622, NULL },
+  { "EL2634", lcecSlaveTypeEL2634, NULL },
   { "EL2808", lcecSlaveTypeEL2808, NULL },
   { "EL2798", lcecSlaveTypeEL2798, NULL },
   { "EL2809", lcecSlaveTypeEL2809, NULL },
@@ -122,6 +124,9 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL3064", lcecSlaveTypeEL3064 },
 
 
+  // digital in(out
+  { "EL1859", lcecSlaveTypeEL1859, NULL },
+
   // analog in, 2ch, 16 bits
   { "EL3102", lcecSlaveTypeEL3102, NULL },
   { "EL3112", lcecSlaveTypeEL3112, NULL },
@@ -129,6 +134,9 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL3142", lcecSlaveTypeEL3142, NULL },
   { "EL3152", lcecSlaveTypeEL3152, NULL },
   { "EL3162", lcecSlaveTypeEL3162, NULL },
+
+  // analog in, 4ch, 16 bits
+  { "EL3164", lcecSlaveTypeEL3164, NULL },
 
   // analog in, 5ch, 16 bits
   { "EL3255", lcecSlaveTypeEL3255, NULL },
