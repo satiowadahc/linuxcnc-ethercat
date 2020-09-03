@@ -27,7 +27,7 @@ echo "Copying Config Files"
 echo " "
 echo "**********************************************"
 #TODO make this more robust.
-sudo cp src/lcec_conf ~/RMDCNC-CORE/linuxcnc/configs/sim-rmd-rtr
+sudo cp src/lcec_conf ~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr
 
 
 echo "Install script complete."
