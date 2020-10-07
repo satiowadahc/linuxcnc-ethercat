@@ -36,7 +36,6 @@ typedef struct {
   unsigned int error_pdo_bp;
   unsigned int sync_err_pdo_os;
   unsigned int sync_err_pdo_bp;
-  unsigned int state_pdo_os;
   unsigned int val_pdo_os;
 } lcec_el31x4_chan_t;
 
@@ -85,8 +84,6 @@ int lcec_el31x4_init(int comp_id, struct lcec_slave *slave, ec_pdo_entry_reg_t *
     LCEC_PDO_INIT(pdo_entry_regs, slave->index, slave->vid, slave->pid, 0x6000 + (i << 4), 0x02, &chan->ovr_pdo_os, &chan->ovr_pdo_bp);
     LCEC_PDO_INIT(pdo_entry_regs, slave->index, slave->vid, slave->pid, 0x6000 + (i << 4), 0x07, &chan->error_pdo_os, &chan->error_pdo_bp);
     LCEC_PDO_INIT(pdo_entry_regs, slave->index, slave->vid, slave->pid, 0x6000 + (i << 4), 0x0E, &chan->sync_err_pdo_os, &chan->sync_err_pdo_bp);
-    // LCEC_PDO_INIT(pdo_entry_regs, slave->index, slave->vid, slave->pid, 0x3101 + i, 0x01, &chan->state_pdo_os, NULL);
-    LCEC_PDO_INIT(pdo_entry_regs, slave->index, slave->vid, slave->pid, 0x6000 + (i << 4), 0x01,  &chan->state_pdo_os, NULL);
     LCEC_PDO_INIT(pdo_entry_regs, slave->index, slave->vid, slave->pid, 0x6000 + (i << 4), 0x11, &chan->val_pdo_os, NULL);
 
     // export pins
@@ -107,7 +104,6 @@ void lcec_el31x4_read(struct lcec_slave *slave, long period) {
   uint8_t *pd = master->process_data;
   int i;
   lcec_el31x4_chan_t *chan;
-  uint8_t state;
   int16_t value;
 
   // wait for slave to be operational
@@ -120,7 +116,7 @@ void lcec_el31x4_read(struct lcec_slave *slave, long period) {
     chan = &hal_data->chans[i];
 
     // update state
-    state = pd[chan->state_pdo_os];
+    // update state
     *(chan->overrange) = EC_READ_BIT(&pd[chan->ovr_pdo_os], chan->ovr_pdo_bp);
     *(chan->underrange) = EC_READ_BIT(&pd[chan->udr_pdo_os], chan->udr_pdo_bp);
     *(chan->error) = EC_READ_BIT(&pd[chan->error_pdo_os], chan->error_pdo_bp);
@@ -132,3 +128,4 @@ void lcec_el31x4_read(struct lcec_slave *slave, long period) {
     *(chan->val) = *(chan->bias) + *(chan->scale) * (double)value * ((double)1/(double)0x7fff);
   }
 }
+
