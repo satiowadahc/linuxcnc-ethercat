@@ -39,7 +39,7 @@ https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master
 There is a separate readme for installing the ethercat-master package.  
 If you are using the RMD repo, you can skip ahead to
 step 4.   
-If you are using the installscript, you can skip to step 5.  
+If you are using the installscript, run the script and skip to step 5.  
 You will likely need to install this package before installing the linuxcnc-ethercat files.  
 `sudo apt install libexpat1-dev`
 
