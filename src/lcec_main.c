@@ -69,7 +69,7 @@ typedef struct lcec_typelist {
 static const lcec_typelist_t types[] = {
   // bus coupler
   { lcecSlaveTypeEK1100, LCEC_EK1100_VID, LCEC_EK1100_PID, LCEC_EK1100_PDOS, NULL},
-  { lcecSlaveTypeEK1101, LCEC_EK1101_VID, LCEC_EK1101_PID, LCEC_EK1101_PDOS, NULL},  
+  { lcecSlaveTypeEK1101, LCEC_EK1101_VID, LCEC_EK1101_PID, LCEC_EK1101_PDOS, NULL},
   { lcecSlaveTypeEK1110, LCEC_EK1110_VID, LCEC_EK1110_PID, LCEC_EK1110_PDOS, NULL},
 
   // AX5000 servo drives
@@ -98,6 +98,7 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL1808, LCEC_EL1xxx_VID, LCEC_EL1808_PID, LCEC_EL1808_PDOS, lcec_el1xxx_init},
   { lcecSlaveTypeEL1809, LCEC_EL1xxx_VID, LCEC_EL1809_PID, LCEC_EL1809_PDOS, lcec_el1xxx_init},
   { lcecSlaveTypeEL1819, LCEC_EL1xxx_VID, LCEC_EL1819_PID, LCEC_EL1819_PDOS, lcec_el1xxx_init},
+  { lcecSlaveTypeELX1052, LCEC_EL1xxx_VID, LCEC_ELX1052_PID, LCEC_ELX1052_PDOS, lcec_el1xxx_init},
 
   // digital out
   { lcecSlaveTypeEL2002, LCEC_EL2xxx_VID, LCEC_EL2002_PID, LCEC_EL2002_PDOS, lcec_el2xxx_init},
