@@ -112,6 +112,7 @@ typedef enum {
   lcecSlaveTypeEL3122,
   lcecSlaveTypeEL3142,
   lcecSlaveTypeEL3152,
+  lcecSlaveTypeEL3154,
   lcecSlaveTypeEL3162,
   lcecSlaveTypeEL3164,
   lcecSlaveTypeEL3255,
