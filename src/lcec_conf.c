@@ -66,7 +66,7 @@ static const LCEC_CONF_MODPARAM_DESC_T slaveEL6900Params[] = {
 static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   // bus coupler
   { "EK1100", lcecSlaveTypeEK1100, NULL },
-  { "EK1101", lcecSlaveTypeEK1101, NULL },  
+  { "EK1101", lcecSlaveTypeEK1101, NULL },
   { "EK1110", lcecSlaveTypeEK1110, NULL },
 
   // generic device
@@ -98,6 +98,7 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL1808", lcecSlaveTypeEL1808, NULL },
   { "EL1809", lcecSlaveTypeEL1809, NULL },
   { "EL1819", lcecSlaveTypeEL1819, NULL },
+  { "ELX1052", lcecSlaveTypeELX1052, NULL },
 
   // digital out
   { "EL2002", lcecSlaveTypeEL2002, NULL },
