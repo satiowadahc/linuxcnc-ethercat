@@ -69,6 +69,7 @@ typedef struct lcec_typelist {
 static const lcec_typelist_t types[] = {
   // bus coupler
   { lcecSlaveTypeEK1100, LCEC_EK1100_VID, LCEC_EK1100_PID, LCEC_EK1100_PDOS, NULL},
+  { lcecSlaveTypeEK1100, LCEC_EK1101_VID, LCEC_EK1101_PID, LCEC_EK1101_PDOS, NULL},  
   { lcecSlaveTypeEK1110, LCEC_EK1110_VID, LCEC_EK1110_PID, LCEC_EK1110_PDOS, NULL},
 
   // AX5000 servo drives
