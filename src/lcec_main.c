@@ -17,6 +17,7 @@
 //
 
 #include "lcec.h"
+#include "lcec_elx9560.h"
 #include "lcec_generic.h"
 #include "lcec_ek1100.h"
 #include "lcec_ax5200.h"
@@ -75,6 +76,9 @@ static const lcec_typelist_t types[] = {
   // AX5000 servo drives
   { lcecSlaveTypeAX5203, LCEC_AX5200_VID, LCEC_AX5203_PID, LCEC_AX5200_PDOS, lcec_ax5200_init},
   { lcecSlaveTypeAX5206, LCEC_AX5200_VID, LCEC_AX5206_PID, LCEC_AX5200_PDOS, lcec_ax5200_init},
+
+  // ELX9560 Power Supply
+  { lcecSlaveTypeELX9560, LCEC_ELX9560_VID, LCEC_ELX9560_PID, LCEC_ELX9560_PDOS, NULL},
 
   // digital in
   { lcecSlaveTypeEL1002, LCEC_EL1xxx_VID, LCEC_EL1002_PID, LCEC_EL1002_PDOS, lcec_el1xxx_init},

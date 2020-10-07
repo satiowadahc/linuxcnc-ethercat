@@ -69,6 +69,9 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EK1101", lcecSlaveTypeEK1101, NULL },
   { "EK1110", lcecSlaveTypeEK1110, NULL },
 
+  // ELX9560 Power supply
+  { "ELX9560", lcecSlaveTypeELX9560, NULL },  
+
   // generic device
   { "generic", lcecSlaveTypeGeneric, NULL },
 
