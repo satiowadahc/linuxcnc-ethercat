@@ -17,6 +17,7 @@
 //
 
 #include "lcec.h"
+#include "lcec_elx9560.h"
 #include "lcec_generic.h"
 #include "lcec_ek1100.h"
 #include "lcec_ax5200.h"
