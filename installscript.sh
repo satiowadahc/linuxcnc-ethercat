@@ -1,7 +1,12 @@
 #!/bin/bash
 # LinuxCNC-Ethercat install script
 # Written by: Sean Froome
-# Last Updated September 3, 2020
+echo "**********************************************"
+echo " "
+echo "Uninstalling old version"
+echo " "
+echo "**********************************************"
+sudo make clean
 
 echo "**********************************************"
 echo " "
