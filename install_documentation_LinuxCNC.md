@@ -10,7 +10,7 @@ This guide assumes you already have Ethercat installed. If you do not,
 install it as it is a prerequisite to the linuxCNC-ethercat HAL drivers.
 
 This guide was based on a google docs tutorial found here:
-https://docs.google.com/document/d/1GiB065ZIAaoMHPtVfTg9JV1Kn-19xGQl2X9DM9-THNM/edit#
+[LinuxCNC Bosch Tutorial](https://docs.google.com/document/d/1GiB065ZIAaoMHPtVfTg9JV1Kn-19xGQl2X9DM9-THNM/edit#)
 
 ***************************************************
 Installing Linux-CNC
@@ -18,12 +18,12 @@ Installing Linux-CNC
 
 Install the LinuxCNC debs from the RMD gitlab repo.
 
-https://rmd-dev.rmdeng.local/rmd/rmdcnc/linuxcnc-debs  
+[RMDCNC LinuxCNC packages](https://rmd-dev.rmdeng.local/rmd/rmdcnc/linuxcnc-debs)  
 `sudo apt install ./linuxcnc-uspace_...`  
 `sudo apt install ./linuxcnc-uspace-dev_...`  
 `sudo apt isntall ./linuxcnc-doc-en_...`  
 Follow the steps on the wiki page to install python-PyQT5  
-https://rmd-dev.rmdeng.local/rmd/rmdcnc/rmdcnc-core/-/wikis/Ubuntu%2018.04%20Computer%20Setup
+[RMDCNC-Wiki](https://rmd-dev.rmdeng.local/rmd/rmdcnc/rmdcnc-core/-/wikis/Ubuntu%2018.04%20Computer%20Setup)
 
 ************************************************
 Install linuxcnc-ethercat
@@ -35,7 +35,7 @@ Most of the instructions below are if you are installing LinuxCNC-ethercat from
 scratch using the public github repo.  
 If you are reading this, you have probably already cloned the repo, but if not,
 here's the link to the RMD repo.  
-https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master  
+[RMD LinuxCNC Ethercat Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master)  
 There is a separate readme for installing the ethercat-master package.  
 If you are using the RMD repo, you can skip ahead to
 step 4.   
