@@ -7,7 +7,9 @@ Written By: Sean Froome
 *************************************************************
 
 This guide assumes you already have Ethercat installed. If you do not,
-install it as it is a prerequisite to the linuxCNC-ethercat HAL drivers.
+install it as it is a prerequisite to the linuxCNC-ethercat HAL drivers. 
+You can download the packge off the RMD git repo:
+[RMD LinuxCNC Ethercat Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master)  
 
 This guide was based on a google docs tutorial found here:
 [LinuxCNC Bosch Tutorial](https://docs.google.com/document/d/1GiB065ZIAaoMHPtVfTg9JV1Kn-19xGQl2X9DM9-THNM/edit#)
