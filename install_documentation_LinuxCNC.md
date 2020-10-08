@@ -50,7 +50,8 @@ You will likely need to install this package before installing the linuxcnc-ethe
 
 2. You'll need a copy of realtime.mk from version 0.9.1 . You can download a zip or tar of
 v0.9.1 from here:
-https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1
+["Official" LinuxCNC EtherCAT repo](https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1)
+
 download the zip, extract it,
 and copy the realtime.mk file to the linuxcnc-ethercat/src directory.
 
