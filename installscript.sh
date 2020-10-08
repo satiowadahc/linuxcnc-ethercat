@@ -3,7 +3,7 @@
 # Written by: Sean Froome
 echo "**********************************************"
 echo " "
-echo "Uninstalling old version"
+echo "Removing old build files"
 echo " "
 echo "**********************************************"
 sudo make clean

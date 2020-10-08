@@ -18,12 +18,12 @@ Installing Linux-CNC
 
 Install the LinuxCNC debs from the RMD gitlab repo.
 
-https://192.168.1.104/rmd/rmdcnc/linuxcnc-debs  
+https://rmd-dev.rmdeng.local/rmd/rmdcnc/linuxcnc-debs  
 `sudo apt install ./linuxcnc-uspace_...`  
 `sudo apt install ./linuxcnc-uspace-dev_...`  
 `sudo apt isntall ./linuxcnc-doc-en_...`  
 Follow the steps on the wiki page to install python-PyQT5  
-https//192.168.1.104/rmd/rmdcnc/rmdcnc-core/-/wikis/Ubuntu%2018.04%20Computer%20Setup
+https://rmd-dev.rmdeng.local/rmd/rmdcnc/rmdcnc-core/-/wikis/Ubuntu%2018.04%20Computer%20Setup
 
 ************************************************
 Install linuxcnc-ethercat
