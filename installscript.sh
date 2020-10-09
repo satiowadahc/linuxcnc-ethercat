@@ -31,8 +31,10 @@ echo " "
 echo "Copying Config Files"
 echo " "
 echo "**********************************************"
-#TODO make this more robust.
-sudo cp src/lcec_conf ~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr
+LCNC_ETHERCAT_DIR=$PWD
+echo "your current working directory is: $LCNC_ETHERCAT_DIR"
+
+sudo cp $LCNC_ETHERCAT_DIR/src/lcec_conf ~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr
 
 
 echo "Install script complete."
