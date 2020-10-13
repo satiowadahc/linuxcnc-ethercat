@@ -1,6 +1,13 @@
 #!/bin/bash
 # LinuxCNC-Ethercat install script
 # Written by: Sean Froome
+
+# Please check the install documentation before running this script!
+
+
+if [ "$1" = "" ]; then
+echo "No path to RMDCNC folder given"
+else
 echo "**********************************************"
 echo " "
 echo "Removing old build files"
@@ -38,6 +45,5 @@ echo "your current working directory is: $LCNC_ETHERCAT_DIR"
 # Must be passed in as an argument when script is run.
 # example: ./installscript.sh "~/RMDCNC-Core\linuxcnc\configs\sim-rmd-rtr"
 sudo cp $LCNC_ETHERCAT_DIR/src/lcec_conf "$1"
-
-
 echo "Install script complete."
+fi
