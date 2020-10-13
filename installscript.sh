@@ -34,6 +34,9 @@ echo "**********************************************"
 LCNC_ETHERCAT_DIR=$PWD
 echo "your current working directory is: $LCNC_ETHERCAT_DIR"
 
+# Make sure you point to the correct config in RMDCNC-Core\linuxcnc\configs.
+# Must be passed in as an argument when script is run.
+# example: ./installscript.sh "~/RMDCNC-Core\linuxcnc\configs\sim-rmd-rtr"
 sudo cp $LCNC_ETHERCAT_DIR/src/lcec_conf "$1"
 
 
