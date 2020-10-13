@@ -41,7 +41,11 @@ here's the link to the RMD repo.
 There is a separate readme for installing the ethercat-master package.  
 If you are using the RMD repo, you can skip ahead to
 step 4.   
-If you are using the installscript, run the script and skip to step 5.  
+If you are using the installscript, run the script and skip to step 5. To run the script, you'll need to pass as an argument 
+the location of the config folder in RMDCNC-core that you wish to use ethercat with. For example  
+`~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr`  
+Then, when you run the shell script, it should look like the following:  
+`./installscript.sh ~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr`  
 You will likely need to install this package before installing the linuxcnc-ethercat files.  
 `sudo apt install libexpat1-dev`
 

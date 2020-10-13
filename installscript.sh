@@ -34,7 +34,7 @@ echo "**********************************************"
 LCNC_ETHERCAT_DIR=$PWD
 echo "your current working directory is: $LCNC_ETHERCAT_DIR"
 
-sudo cp $LCNC_ETHERCAT_DIR/src/lcec_conf ~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr
+sudo cp $LCNC_ETHERCAT_DIR/src/lcec_conf "$1"
 
 
 echo "Install script complete."
