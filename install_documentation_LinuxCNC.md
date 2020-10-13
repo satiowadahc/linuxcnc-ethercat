@@ -33,15 +33,12 @@ Follow the steps on the wiki page to install python-PyQT5
 ##Installing linuxcnc-ethercat
 ************************************************
 
-
-
 It's recommended to use the  LinuxCNC-ethercat repo on the RMDCNC gitlab, as it has all the necessary modifications already done. 
 Most of the instructions below are if you are installing LinuxCNC-ethercat from scratch using the public github repo. 
 If you are reading this, you have probably already cloned the repo, but if not, here's the link to the RMD repo:   
 [RMD Ethercat-Master Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master/)  
 Follow the readme in the ethercat-master repo to install the ethercat-master package.  
-If you are using the RMD repo, you can skip ahead to
-step 4.   
+
 
 1. You will likely need to install this package before installing the linuxcnc-ethercat files.  
 `sudo apt install libexpat1-dev`
@@ -49,14 +46,15 @@ step 4.
 ************************************************
 ###Installing linuxcnc-ethercat with bash script
 ************************************************
-1.If you are using the installscript, run the script and skip to step 5. To run the script, you'll need to pass as an argument 
-the location of the config folder in RMDCNC-core that you wish to use ethercat with. For example if 
-`~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr` is the location of your RMDCNC repo   
-Then, when you run the shell script, it should look like the following:  
+To run the bash script you need to decide which config of RMDCNC you wish to use ethercat with. The You will need to pass
+that folder location as an argument when you run the script.  
+`~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr` is an example path. 
+
+If you're using the above path, then you run the shell script, it should look like the following:  
 `./installscript.sh "~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr"` 
-2. There are two files you will need to modify
-    1. the ethercat-conf.xml file
-    2. your hal file 
+There are two files you will need to modify
+1. the ethercat-conf.xml file
+2. your hal file 
     
 Inside your chosen config folder should now be the ethercat-conf xml file, and an lcec_conf binary file. 
 Your xml file will vary depending on what ethercat devices you wish to connect to linuxcnc, and what 
