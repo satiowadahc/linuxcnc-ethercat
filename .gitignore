@@ -17,3 +17,5 @@ config.mk
 src/lcec_conf
 src/Module.symvers
 
+
+.idea/
