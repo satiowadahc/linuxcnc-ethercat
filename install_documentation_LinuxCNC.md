@@ -9,7 +9,7 @@ Written By: Sean Froome
 This guide assumes you already have Ethercat installed. If you do not,
 install it as it is a prerequisite to the linuxCNC-ethercat HAL drivers. 
 You can download the packge off the RMD git repo:
-[RMD LinuxCNC Ethercat Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master)  
+[RMD Ethercat-Master Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master)  
 
 This guide was based on a google docs tutorial found here:
 [LinuxCNC Bosch Tutorial](https://docs.google.com/document/d/1GiB065ZIAaoMHPtVfTg9JV1Kn-19xGQl2X9DM9-THNM/edit#)
@@ -20,7 +20,7 @@ Installing Linux-CNC
 
 Install the LinuxCNC debs from the RMD gitlab repo.
 
-[RMDCNC LinuxCNC packages](https://rmd-dev.rmdeng.local/rmd/rmdcnc/linuxcnc-debs)  
+[RMDCNC LinuxCNC deb packages](https://rmd-dev.rmdeng.local/rmd/rmdcnc/linuxcnc-debs)  
 ```bash
 sudo apt install ./linuxcnc-uspace_...   
 sudo apt install ./linuxcnc-uspace-dev_...  
@@ -39,7 +39,7 @@ Most of the instructions below are if you are installing LinuxCNC-ethercat from
 scratch using the public github repo.  
 If you are reading this, you have probably already cloned the repo, but if not,
 here's the link to the RMD repo.  
-[RMD LinuxCNC Ethercat Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master/)  
+[RMD Ethercat-Master Repo](https://rmd-dev.rmdeng.local/rmd/rmdcnc/ethercat-master/)  
 Follow the readme in the ethercat-master repo to install the ethercat-master package.  
 If you are using the RMD repo, you can skip ahead to
 step 4.   
