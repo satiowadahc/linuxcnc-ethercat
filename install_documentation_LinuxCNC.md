@@ -21,9 +21,11 @@ Installing Linux-CNC
 Install the LinuxCNC debs from the RMD gitlab repo.
 
 [RMDCNC LinuxCNC packages](https://rmd-dev.rmdeng.local/rmd/rmdcnc/linuxcnc-debs)  
-`sudo apt install ./linuxcnc-uspace_...`  
-`sudo apt install ./linuxcnc-uspace-dev_...`  
-`sudo apt isntall ./linuxcnc-doc-en_...`  
+```bash
+sudo apt install ./linuxcnc-uspace_...   
+sudo apt install ./linuxcnc-uspace-dev_...  
+sudo apt install ./linuxcnc-doc-en_...
+```  
 Follow the steps on the wiki page to install python-PyQT5  
 [RMDCNC-Wiki](https://rmd-dev.rmdeng.local/rmd/rmdcnc/rmdcnc-core/-/wikis/Ubuntu%2018.04%20Computer%20Setup)
 
@@ -54,18 +56,17 @@ You will likely need to install this package before installing the linuxcnc-ethe
 
 2. You'll need a copy of realtime.mk from version 0.9.1 . You can download a zip or tar of
 v0.9.1 from here:
-["Official" LinuxCNC EtherCAT repo](https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1)
-
-download the zip, extract it,
-and copy the realtime.mk file to the linuxcnc-ethercat/src directory.
+["Official" LinuxCNC EtherCAT repo](https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1)  
+download the zip, extract it, and copy the realtime.mk file to the linuxcnc-ethercat/src directory.
 
 3. You'll also need to add this line to the top of lcec_main.c: '#include "rtapi_mutex.h"'
 
 4. Once these changes are made, run the Makefile in the top level folder in the
-linuxCNC-ethercat directory by running the following commands.  
-`sudo make`  
-`sudo make install`  
-
+linuxCNC-ethercat directory by running the following commands:  
+    ```
+    sudo make
+    sudo make install
+    ``` 
 5. Copy the lcec_conf file to the linuxcnc config folder of your choice inside
 the RMDCNC repo (in my case, I have it placed in the sim-rmd-rtr config folder).
 Also copy the ethercat-conf.xml file to the sim-rmd-rtr folder. You will need
