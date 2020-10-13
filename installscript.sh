@@ -45,6 +45,6 @@ echo "your current working directory is: $LCNC_ETHERCAT_DIR"
 # Must be passed in as an argument when script is run.
 # example: ./installscript.sh "~/RMDCNC-Core\linuxcnc\configs\sim-rmd-rtr"
 sudo cp $LCNC_ETHERCAT_DIR/src/lcec_conf "$1"
-sudo cp $LCNC_ETHERCAT_DIR/examples/generic-complex/ethercat-conf.xml "$1"
+sudo cp $LCNC_ETHERCAT_DIR/examples/fsoe/ethercat-conf.xml "$1"
 echo "Install script complete."
 fi

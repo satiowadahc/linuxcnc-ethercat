@@ -60,7 +60,8 @@ Then, when you run the shell script, it should look like the following:
     
 Inside your chosen config folder should now be the ethercat-conf xml file, and an lcec_conf binary file. 
 Your xml file will vary depending on what ethercat devices you wish to connect to linuxcnc, and what 
-slave address they have.
+slave address they have. The examples listed in the examples folder are a good place to start, as is the 
+google docs tutorial linked above.
 ************************************************
 ###Installing linuxcnc-ethercat from github sources
 ************************************************
