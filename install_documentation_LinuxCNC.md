@@ -1,8 +1,8 @@
 *************************************************************
 
-#Installing the LinuxCNC Ethercat HAL driver
+# Installing the LinuxCNC Ethercat HAL driver
 
-#####Written By: Sean Froome
+##### Written By: Sean Froome
 
 *************************************************************
 
@@ -15,7 +15,7 @@ This guide was based on a google docs tutorial found here:
 [LinuxCNC Bosch Tutorial](https://docs.google.com/document/d/1GiB065ZIAaoMHPtVfTg9JV1Kn-19xGQl2X9DM9-THNM/edit#)
 
 ***************************************************
-##Installing Linux-CNC
+## Installing Linux-CNC
 ***************************************************
 
 Install the LinuxCNC debs from the RMD gitlab repo.
@@ -30,7 +30,7 @@ Follow the steps on the wiki page to install python-PyQT5
 [RMDCNC-Wiki](https://rmd-dev.rmdeng.local/rmd/rmdcnc/rmdcnc-core/-/wikis/Ubuntu%2018.04%20Computer%20Setup)
 
 ************************************************
-##Installing linuxcnc-ethercat
+## Installing linuxcnc-ethercat
 ************************************************
 
 It's recommended to use the  LinuxCNC-ethercat repo on the RMDCNC gitlab, as it has all the necessary modifications already done. 
@@ -44,14 +44,14 @@ Follow the readme in the ethercat-master repo to install the ethercat-master pac
 `sudo apt install libexpat1-dev`
 
 ************************************************
-###Installing linuxcnc-ethercat with bash script
+### Installing linuxcnc-ethercat with bash script
 ************************************************
-To run the bash script you need to decide which config of RMDCNC you wish to use ethercat with. The You will need to pass
+To run the bash script you need to decide which config of RMDCNC you wish to use ethercat with. You will need to pass
 that folder location as an argument when you run the script.  
 `~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr` is an example path. 
 
 If you're using the above path, then you run the shell script, it should look like the following:  
-`./installscript.sh "~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr"` 
+`./installscript.sh "~/RMDCNC-Core/linuxcnc/configs/sim-rmd-rtr"`  
 There are two files you will need to modify
 1. the ethercat-conf.xml file
 2. your hal file 
@@ -59,9 +59,9 @@ There are two files you will need to modify
 Inside your chosen config folder should now be the ethercat-conf xml file, and an lcec_conf binary file. 
 Your xml file will vary depending on what ethercat devices you wish to connect to linuxcnc, and what 
 slave address they have. The examples listed in the examples folder are a good place to start, as is the 
-google docs tutorial linked above.
+Google Docs tutorial linked above.
 ************************************************
-###Installing linuxcnc-ethercat from github sources
+### Installing linuxcnc-ethercat from github sources
 ************************************************
 
 1. Clone the "official" linuxCNC-ethercat repo with git  
