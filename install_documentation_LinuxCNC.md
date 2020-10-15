@@ -76,7 +76,7 @@ Extract the zip, and copy  `realtime.mk` to the linuxcnc-ethercat/src directory.
 
 4. Once these changes are made, run the Makefile in the top level folder of the
 linuxCNC-ethercat directory by running the following commands:  
-    ```
+    ```bash
     sudo make
     sudo make install
     ``` 
