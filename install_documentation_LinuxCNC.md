@@ -69,7 +69,7 @@ Google Docs tutorial linked above.
 
 2. Download a copy of linuxcnc-ethercat v0.9.1 (previous version).  
 [LinuxCNC EtherCAT v0.9.1 release](https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1)  
-download the zip, extract it, and copy the realtime.mk file to the linuxcnc-ethercat/src directory.
+Extract the zip, and copy  `realtime.mk` to the linuxcnc-ethercat/src directory.
 
 3. Add this line to the top of lcec_main.c:  
 ```#include "rtapi_mutex.h"```
