@@ -67,23 +67,21 @@ Google Docs tutorial linked above.
 1. Clone the "official" linuxCNC-ethercat repo with git  
 `git clone https://github.com/sittner/linuxcnc-ethercat.git`
 
-2. You'll need a copy of realtime.mk from version 0.9.1 . You can download a zip or tar of
-v0.9.1 from here:
-["Official" LinuxCNC EtherCAT repo](https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1)  
+2. Download a copy of linuxcnc-ethercat v0.9.1 (previous version).  
+[LinuxCNC EtherCAT v0.9.1 release](https://github.com/sittner/linuxcnc-ethercat/releases/tag/v0.9.1)  
 download the zip, extract it, and copy the realtime.mk file to the linuxcnc-ethercat/src directory.
 
-3. You'll also need to add this line to the top of lcec_main.c: '#include "rtapi_mutex.h"'
+3. Add this line to the top of lcec_main.c:  
+```#include "rtapi_mutex.h"```
 
-4. Once these changes are made, run the Makefile in the top level folder in the
+4. Once these changes are made, run the Makefile in the top level folder of the
 linuxCNC-ethercat directory by running the following commands:  
     ```
     sudo make
     sudo make install
     ``` 
-2. Copy and modify files: 
-   1. Copy the lcec_conf file to the linuxcnc config folder of your choice inside
-     the RMDCNC repo (in my case, I have it placed in the sim-rmd-rtr config folder). 
-   2. Also copy the ethercat-conf.xml file (a copy can be found in the examples folder) to the sim-rmd-rtr folder. 
-   3.  You will need to modify the xml file based on what ethercat devices you have connected to the computer.
-   4. You will also need to make modifications to the sim-rmd-rtr.hal file to connect the
-ethercat devices to LinuxCNC.
+5. Copy files and modify the target LinuxCNC configuration folder:
+   1. Copy `lcec_conf`to your target linuxcnc config folder of your choice.
+   2. Copy the ethercat-conf.xml file (found in the examples folder) to the linuxcnc folder of your choice. 
+   3. Modify the xml file based on the EtherCAT devices you wish to use.
+   4. Modify the HAL file(s) to connect EtherCAT devices to LinuxCNC. 
