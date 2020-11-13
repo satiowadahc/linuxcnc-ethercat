@@ -17,6 +17,7 @@
 //
 
 #include "lcec.h"
+#include "lcec_elx9560.h"
 #include "lcec_generic.h"
 #include "lcec_ek1100.h"
 #include "lcec_ax5200.h"
@@ -25,6 +26,7 @@
 #include "lcec_el1859.h"
 #include "lcec_el2xxx.h"
 #include "lcec_el2202.h"
+#include "lcec_el3064.h"
 #include "lcec_el31x2.h"
 #include "lcec_el31x4.h"
 #include "lcec_el3255.h"
@@ -51,6 +53,7 @@
 #include "lcec_ph3lm2rm.h"
 
 #include "rtapi_app.h"
+#include "rtapi_mutex.h"
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Sascha Ittner <sascha.ittner@modusoft.de>");
@@ -67,11 +70,16 @@ typedef struct lcec_typelist {
 static const lcec_typelist_t types[] = {
   // bus coupler
   { lcecSlaveTypeEK1100, LCEC_EK1100_VID, LCEC_EK1100_PID, LCEC_EK1100_PDOS, NULL},
+  { lcecSlaveTypeEK1101, LCEC_EK1101_VID, LCEC_EK1101_PID, LCEC_EK1101_PDOS, NULL},
   { lcecSlaveTypeEK1110, LCEC_EK1110_VID, LCEC_EK1110_PID, LCEC_EK1110_PDOS, NULL},
+  { lcecSlaveTypeEK1122, LCEC_EK1122_VID, LCEC_EK1122_PID, LCEC_EK1122_PDOS, NULL},
 
   // AX5000 servo drives
   { lcecSlaveTypeAX5203, LCEC_AX5200_VID, LCEC_AX5203_PID, LCEC_AX5200_PDOS, lcec_ax5200_init},
   { lcecSlaveTypeAX5206, LCEC_AX5200_VID, LCEC_AX5206_PID, LCEC_AX5200_PDOS, lcec_ax5200_init},
+
+  // ELX9560 Power Supply
+  { lcecSlaveTypeELX9560, LCEC_ELX9560_VID, LCEC_ELX9560_PID, LCEC_ELX9560_PDOS, NULL},
 
   // digital in
   { lcecSlaveTypeEL1002, LCEC_EL1xxx_VID, LCEC_EL1002_PID, LCEC_EL1002_PDOS, lcec_el1xxx_init},
@@ -95,6 +103,7 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL1808, LCEC_EL1xxx_VID, LCEC_EL1808_PID, LCEC_EL1808_PDOS, lcec_el1xxx_init},
   { lcecSlaveTypeEL1809, LCEC_EL1xxx_VID, LCEC_EL1809_PID, LCEC_EL1809_PDOS, lcec_el1xxx_init},
   { lcecSlaveTypeEL1819, LCEC_EL1xxx_VID, LCEC_EL1819_PID, LCEC_EL1819_PDOS, lcec_el1xxx_init},
+  { lcecSlaveTypeELX1052, LCEC_EL1xxx_VID, LCEC_ELX1052_PID, LCEC_ELX1052_PDOS, lcec_el1xxx_init},
 
   // digital out
   { lcecSlaveTypeEL2002, LCEC_EL2xxx_VID, LCEC_EL2002_PID, LCEC_EL2002_PDOS, lcec_el2xxx_init},
@@ -116,7 +125,13 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL2798, LCEC_EL2xxx_VID, LCEC_EL2798_PID, LCEC_EL2798_PDOS, lcec_el2xxx_init},
   { lcecSlaveTypeEL2809, LCEC_EL2xxx_VID, LCEC_EL2809_PID, LCEC_EL2809_PDOS, lcec_el2xxx_init},
 
+  { lcecSlaveTypeEP2008, LCEC_EL2xxx_VID, LCEC_EP2008_PID, LCEC_EP2008_PDOS, lcec_el2xxx_init},
   { lcecSlaveTypeEP2028, LCEC_EL2xxx_VID, LCEC_EP2028_PID, LCEC_EP2028_PDOS, lcec_el2xxx_init},
+  { lcecSlaveTypeEP2809, LCEC_EL2xxx_VID, LCEC_EP2809_PID, LCEC_EP2809_PDOS, lcec_el2xxx_init},
+
+  // analog in, 2ch, 12 bits
+  { lcecSlaveTypeEL3064, LCEC_EL3064_VID, LCEC_EL3064_PID, LCEC_EL3064_PDOS, lcec_el3064_init},
+
 
   // digital in/out
   { lcecSlaveTypeEL1859, LCEC_EL1859_VID, LCEC_EL1859_PID, LCEC_EL1859_PDOS, lcec_el1859_init},
@@ -129,8 +144,10 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL3152, LCEC_EL31x2_VID, LCEC_EL3152_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
   { lcecSlaveTypeEL3162, LCEC_EL31x2_VID, LCEC_EL3162_PID, LCEC_EL31x2_PDOS, lcec_el31x2_init},
 
-  // analog in, 2ch, 16 bits
+  // analog in, 4ch, 16 bits
+  { lcecSlaveTypeEL3154, LCEC_EL31x4_VID, LCEC_EL3154_PID, LCEC_EL31x4_PDOS, lcec_el31x4_init},
   { lcecSlaveTypeEL3164, LCEC_EL31x4_VID, LCEC_EL3164_PID, LCEC_EL31x4_PDOS, lcec_el31x4_init},
+
 
   // analog in, 5ch, 16 bits
   { lcecSlaveTypeEL3255, LCEC_EL3255_VID, LCEC_EL3255_PID, LCEC_EL3255_PDOS, lcec_el3255_init},
@@ -203,7 +220,29 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeDeASDA, LCEC_DEASDA_VID, LCEC_DEASDA_PID, LCEC_DEASDA_PDOS, lcec_deasda_init},
 
   // Omron G5 series
-  { lcecSlaveTypeOmrG5, LCEC_OMRG5_VID, LCEC_OMRG5_PID, LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KNA5L,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KNA5L_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN01L,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN01L_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN02L,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN02L_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN04L,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN04L_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN01H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN01H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN02H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN02H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN04H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN04H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN08H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN08H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN10H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN10H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN15H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN15H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN20H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN20H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN30H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN30H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN50H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN50H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN75H,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN75H_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN150H, LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN150H_ECT_PID, LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN06F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN06F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN10F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN10F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN15F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN15F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN20F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN20F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN30F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN30F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN50F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN50F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN75F,  LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN75F_ECT_PID,  LCEC_OMRG5_PDOS, lcec_omrg5_init},
+  { lcecSlaveTypeOmrG5_KN150F, LCEC_OMRG5_VID, LCEC_OMRG5_R88D_KN150F_ECT_PID, LCEC_OMRG5_PDOS, lcec_omrg5_init},
 
   // modusoft PH3LM2RM converter
   { lcecSlaveTypePh3LM2RM, LCEC_PH3LM2RM_VID, LCEC_PH3LM2RM_PID, LCEC_PH3LM2RM_PDOS, lcec_ph3lm2rm_init},
@@ -1337,7 +1376,7 @@ void lcec_write_master(void *arg, long period) {
   hal_data = master->hal_data;
   *(hal_data->pll_err) = 0;
   *(hal_data->pll_out) = 0;
-  // the first read dc_time value semms to be invalid, so wait for two successive succesfull reads 
+  // the first read dc_time value semms to be invalid, so wait for two successive succesfull reads
   if (dc_time_valid && master->dc_time_valid_last) {
     *(hal_data->pll_err) = master->app_time_last - dc_time;
     // check for invalid error values
@@ -1386,7 +1425,7 @@ int lcec_read_idn(struct lcec_slave *slave, uint8_t drive_no, uint16_t idn, uint
   size_t result_size;
   uint16_t error_code;
 
-  if ((err = ecrt_master_read_idn(master->master, slave->index, drive_no, idn, target, size, &result_size, &error_code))) {  
+  if ((err = ecrt_master_read_idn(master->master, slave->index, drive_no, idn, target, size, &result_size, &error_code))) {
     rtapi_print_msg(RTAPI_MSG_ERR, LCEC_MSG_PFX "slave %s.%s: Failed to execute IDN read (drive %u idn %c-%u-%u, error %d, error_code %08x)\n",
       master->name, slave->name, drive_no, (idn & 0x8000) ? 'P' : 'S', (idn >> 12) & 0x0007, idn & 0x0fff, err, error_code);
     return -1;
@@ -1593,4 +1632,3 @@ void copy_fsoe_data(struct lcec_slave *slave, unsigned int slave_offset, unsigne
     memcpy(&pd[master_offset], &pd[*(slave->fsoe_master_offset)], LCEC_FSOE_MSG_LEN);
   }
 }
-

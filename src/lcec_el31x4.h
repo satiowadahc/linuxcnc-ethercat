@@ -22,6 +22,7 @@
 
 #define LCEC_EL31x4_VID LCEC_BECKHOFF_VID
 
+#define LCEC_EL3154_PID 0x0c523052
 #define LCEC_EL3164_PID 0x0C5C3052
 
 #define LCEC_EL31x4_CHANS 4
@@ -31,4 +32,3 @@
 int lcec_el31x4_init(int comp_id, struct lcec_slave *slave, ec_pdo_entry_reg_t *pdo_entry_regs);
 
 #endif
-
