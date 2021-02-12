@@ -43,8 +43,10 @@
 #include "lcec_el1904.h"
 #include "lcec_el2904.h"
 #include "lcec_el7041_1000.h"
+#include "lcec_el70x1.h"
 #include "lcec_el7211.h"
 #include "lcec_el7342.h"
+#include "lcec_el7411.h"
 #include "lcec_el95xx.h"
 #include "lcec_em7004.h"
 #include "lcec_stmds5k.h"
@@ -189,14 +191,20 @@ static const lcec_typelist_t types[] = {
   { lcecSlaveTypeEL2521, LCEC_EL2521_VID, LCEC_EL2521_PID, LCEC_EL2521_PDOS, lcec_el2521_init},
 
   // stepper
+  { lcecSlaveTypeEL7031, LCEC_EL70x1_VID, LCEC_EL7031_PID, LCEC_EL70x1_PDOS, lcec_el7031_init},
+  { lcecSlaveTypeEL7041_0052, LCEC_EL70x1_VID, LCEC_EL7041_0052_PID, LCEC_EL70x1_PDOS, lcec_el7041_0052_init},
   { lcecSlaveTypeEL7041_1000, LCEC_EL7041_1000_VID, LCEC_EL7041_1000_PID, LCEC_EL7041_1000_PDOS, lcec_el7041_1000_init},
 
   // ac servo
+  { lcecSlaveTypeEL7201_9014, LCEC_EL7211_VID, LCEC_EL7201_9014_PID, LCEC_EL7211_PDOS, lcec_el7211_init},
   { lcecSlaveTypeEL7211, LCEC_EL7211_VID, LCEC_EL7211_PID, LCEC_EL7211_PDOS, lcec_el7211_init},
   { lcecSlaveTypeEL7221, LCEC_EL7211_VID, LCEC_EL7221_PID, LCEC_EL7211_PDOS, lcec_el7211_init},
 
   // dc servo
   { lcecSlaveTypeEL7342, LCEC_EL7342_VID, LCEC_EL7342_PID, LCEC_EL7342_PDOS, lcec_el7342_init},
+
+  // BLDC
+  { lcecSlaveTypeEL7411, LCEC_EL7411_VID, LCEC_EL7411_PID, LCEC_EL7411_PDOS, lcec_el7411_init},
 
   // power supply
   { lcecSlaveTypeEL9505, LCEC_EL95xx_VID, LCEC_EL9505_PID, LCEC_EL95xx_PDOS, lcec_el95xx_init},
