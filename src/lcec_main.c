@@ -30,6 +30,7 @@
 #include "lcec_el31x2.h"
 #include "lcec_el31x4.h"
 #include "lcec_el3255.h"
+#include "lcec_el34xx.h"
 #include "lcec_el40x1.h"
 #include "lcec_el40x2.h"
 #include "lcec_el40x8.h"
@@ -149,6 +150,9 @@ static const lcec_typelist_t types[] = {
   // analog in, 4ch, 16 bits
   { lcecSlaveTypeEL3154, LCEC_EL31x4_VID, LCEC_EL3154_PID, LCEC_EL31x4_PDOS, lcec_el31x4_init},
   { lcecSlaveTypeEL3164, LCEC_EL31x4_VID, LCEC_EL3164_PID, LCEC_EL31x4_PDOS, lcec_el31x4_init},
+
+  // analog in, 3 Phase Power Measurement
+  { lcecSlaveTypeEL3443, LCEC_EL34xx_VID, LCEC_EL3443_PID, LCEC_EL3443_PDOS, lcec_el34xx_init},
 
 
   // analog in, 5ch, 16 bits
