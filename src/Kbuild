@@ -10,9 +10,11 @@ lcec-objs := \
     lcec_el2521.o \
     lcec_el2xxx.o \
     lcec_el2202.o \
+    lcec_el3064.o \
     lcec_el31x2.o \
     lcec_el31x4.o \
     lcec_el3255.o \
+    lcec_el34xx.o \
     lcec_el40x1.o \
     lcec_el40x2.o \
     lcec_el40x8.o \
@@ -37,5 +39,3 @@ lcec-objs := \
     lcec_omrg5.o \
     lcec_ph3lm2rm.o\
     lcec_ex260.o
-
-

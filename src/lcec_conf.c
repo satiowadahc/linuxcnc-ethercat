@@ -112,6 +112,9 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EK1110", lcecSlaveTypeEK1110, NULL },
   { "EK1122", lcecSlaveTypeEK1122, NULL },
 
+  // ELX9560 Power supply
+  { "ELX9560", lcecSlaveTypeELX9560, NULL },  
+
   // generic device
   { "generic", lcecSlaveTypeGeneric, NULL },
 
@@ -141,6 +144,7 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL1808", lcecSlaveTypeEL1808, NULL },
   { "EL1809", lcecSlaveTypeEL1809, NULL },
   { "EL1819", lcecSlaveTypeEL1819, NULL },
+  { "ELX1052", lcecSlaveTypeELX1052, NULL },
 
   // digital out
   { "EL2002", lcecSlaveTypeEL2002, NULL },
@@ -167,6 +171,9 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EP2028", lcecSlaveTypeEP2028, NULL },
   { "EP2809", lcecSlaveTypeEP2809, NULL },
 
+  // analog in, 4ch, 12 bits
+  { "EL3064", lcecSlaveTypeEL3064 },
+
   // digital in(out
   { "EL1859", lcecSlaveTypeEL1859, NULL },
 
@@ -179,7 +186,11 @@ static const LCEC_CONF_TYPELIST_T slaveTypes[] = {
   { "EL3162", lcecSlaveTypeEL3162, NULL },
 
   // analog in, 4ch, 16 bits
+  { "EL3154", lcecSlaveTypeEL3154, NULL },
   { "EL3164", lcecSlaveTypeEL3164, NULL },
+
+  // analog in, 3 Phase Measurement
+  { "EL3443", lcecSlaveTypeEL3443, NULL},
 
   // analog in, 5ch, 16 bits
   { "EL3255", lcecSlaveTypeEL3255, NULL },
@@ -1518,7 +1529,7 @@ static void parseModParamAttrs(LCEC_CONF_XML_INST_T *inst, int next, const char 
       break;
   }
 
-  (state->currSlave->pdoMappingCount) += modParams->pdoMappingCount; 
+  (state->currSlave->pdoMappingCount) += modParams->pdoMappingCount;
   (state->currSlave->modParamCount)++;
 }
 
@@ -1532,4 +1543,3 @@ static int parseSyncCycle(LCEC_CONF_XML_STATE_T *state, const char *nptr) {
   // custom value
   return atoi(nptr);
 }
-

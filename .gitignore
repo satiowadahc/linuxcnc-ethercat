@@ -1,3 +1,6 @@
+# directories
+.idea
+
 # generc file-types
 **.ko
 **.so
@@ -24,3 +27,4 @@ debian/*.log
 debian/*.substvars
 debian/linuxcnc-ethercat/
 
+.idea/

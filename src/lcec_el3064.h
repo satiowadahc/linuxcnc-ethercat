@@ -15,23 +15,20 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 //
-#ifndef _LCEC_EK1100_H_
-#define _LCEC_EK1100_H_
+#ifndef _LCEC_EL3064_H_
+#define _LCEC_EL3064_H_
 
-#define LCEC_EK1100_VID  LCEC_BECKHOFF_VID
-#define LCEC_EK1100_PID  0x044C2C52
-#define LCEC_EK1100_PDOS 0
+#include "lcec.h"
 
-#define LCEC_EK1101_VID  LCEC_BECKHOFF_VID
-#define LCEC_EK1101_PID  0x044D2C52
-#define LCEC_EK1101_PDOS 0
+#define LCEC_EL3064_VID LCEC_BECKHOFF_VID
 
-#define LCEC_EK1110_VID  LCEC_BECKHOFF_VID
-#define LCEC_EK1110_PID  0x04562C52
-#define LCEC_EK1110_PDOS 0
+#define LCEC_EL3064_PID 0xbf83052
 
-#define LCEC_EK1122_VID  LCEC_BECKHOFF_VID
-#define LCEC_EK1122_PID  0x04622C52
-#define LCEC_EK1122_PDOS 0
+#define LCEC_EL3064_PDOS  16
+
+#define LCEC_EL3064_CHANS 4
+
+int lcec_el3064_init(int comp_id, struct lcec_slave *slave, ec_pdo_entry_reg_t *pdo_entry_regs);
 
 #endif
+
